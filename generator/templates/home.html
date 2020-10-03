@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h1 class="text-center mt-5">RandomPass</h1>
+                <h3 class="text-center">A random secure password generator</h3>
+                <h2 class="text-center mt-5">20.000 English Words List Password</h2>
+                {% if password %}
+                    <div class="col-12 mx-auto d-flex justify-content-center mt-2 mb-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <input type="text" value="{{password}}"" id="password" class="form-control card-title text-center" size="50" readonly>
+                                <div class="col-2 mx-auto d-flex justify-content-center">
+                                    <button class="btn btn-danger" onclick="clipboard()">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                
+                <form method="POST"> {% csrf_token %}
+                    <input type="hidden" name="dictionary" value="wordlist">
+                    <div class="col-2 mx-auto d-flex justify-content-center">
+                        <button class="btn btn-large btn-danger">Generate Password</button>
+                    </div>
+                </form>
+
+                <h2 class="text-center mt-5">Diceware Password</h2>
+                {% if diceware %}
+                    <div class="col-12 mx-auto d-flex justify-content-center mt-2 mb-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <input type="text" value="{{diceware}}"" id="password" class="form-control card-title text-center" size="50" readonly>
+                                <div class="col-2 mx-auto d-flex justify-content-center">
+                                    <button class="btn btn-primary" onclick="clipboard()">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                
+                <form method="POST"> {% csrf_token %}
+                    <input type="hidden" name="dictionary" value="diceware">
+                    <div class="col-2 mx-auto d-flex justify-content-center">
+                        <button class="btn btn-large btn-primary">Generate Password</button>
+                    </div>
+                </form>
+                
+                <h3 class="text-center mt-5">How does it work?</h3>
+            </div>
+
+            <div class="col-4 mt-3">
+                <h4><strong>20.000 English Words:</strong> Picks 4 random words from a list of 20.000 english words
+                    separated by spaces. You can find the full list 
+                    <a href="https://github.com/first20hours/google-10000-english/blob/master/20k.txt">here</a>
+                </h4>
+            </div>
+
+            <div class="col-4 mt-3">
+                <h4><strong>Diceware:</strong> Picks 4 random words from a list of 7776 words, every word has a number
+                    assigned to it, the code throws a dice 5 times and based on the combination of those 5 numbers picks
+                    the word assigned to that number until 4 words form part of the password. You can learn more on the 
+                    <a href="https://theworld.com/~reinhold/diceware.html">diceware site</a>
+                </h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h3 class="text-center mt-5">Why RandomPass?</h3>
+                <h4 class="text-center">This idea was inspired by a series of videos on passwords made by Computherphile on their youtube channel.
+                    The general idea is to create passwords that are easy for humans to remember but hard for computers
+                    to crack. We really encourage you to watch the videos shown below as they will explain why we need to pay more
+                    attention to the way we choose our passwords
+                </h4>
+            </div>
+        </div>
+        
+        <div class="row justify-content-around mt-3">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/7U-RbOKanYs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/3NjQ9b3pgIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Pe_3cFuSw1E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="mt-5" allowfullscreen></iframe>
+            
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h3 class="text-center mt-5">API</h3>
+                <h4>You can get a JSON response with the password via our API</h4>
+                <h4>Wordlist Password: Method <span class="badge badge-primary">GET</span>-><span class="badge badge-secondary">randompass.com/api/wordlist</span></h4>
+                <h4>Diceware Password: Method <span class="badge badge-primary">GET</span>-><span class="badge badge-secondary">randompass.com/api/diceware</span></h4>
+            </div>
+            <h3 class="text-center mt-5 col-12 mb-2">We <strong>DO NOT</strong> store any passwords generated on this site</h3>
+            <a href="https://github.com/QizaiMing/randompass">
+                <img class="mb-2" align="left" alt="Github Repo" width="100px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg" />
+            </a>
+        </div>
+    </div>
+    <script>
+    function clipboard() {
+    /* Get the text field */
+    var copyText = document.getElementById("password");
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+    }
+    </script>
+</body>
+{% endblock content %}
