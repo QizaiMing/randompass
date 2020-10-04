@@ -1,4 +1,4 @@
-# randompass
+# Randompass
 A random secure password generator
 <br /><a href="https://randompass.herokuapp.com/">Live Demo</a><br />
 <a href="https://randompass.herokuapp.com/"><img src="https://i.ibb.co/BV7ZSbY/Screenshot-from-2020-10-04-17-22-49.png" alt="Screenshot-from-2020-10-04-17-22-49" border="0"></a><br>
