@@ -20,3 +20,8 @@ print(data)
 ## Tools
 - Django<br>
 - Heroku
+
+## Videos that inspired this project
+<a href="https://www.youtube.com/watch?v=7U-RbOKanYs">Password Cracking - Computerphile</a><br />
+<a href="https://www.youtube.com/watch?v=3NjQ9b3pgIg">How to Choose a Password - Computerphile</a><br />
+<a href="https://www.youtube.com/watch?v=Pe_3cFuSw1E">Diceware & Passwords - Computerphile</a>
